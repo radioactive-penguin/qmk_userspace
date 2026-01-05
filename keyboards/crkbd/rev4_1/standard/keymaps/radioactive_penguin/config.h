@@ -41,3 +41,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
 #endif
+
+// config.h
+
+// how quickly all combo keys must be pressed in succession to trigger
+#define COMBO_TERM 25
+// if a combo triggers a modifier, only trigger when the combo is held
+#define COMBO_MUST_HOLD_MODS
+// how long at least one of the combo keys must be held to trigger
+#define COMBO_HOLD_TERM 175

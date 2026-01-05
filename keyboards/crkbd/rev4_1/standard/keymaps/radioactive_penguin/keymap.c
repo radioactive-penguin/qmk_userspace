@@ -48,11 +48,33 @@ KC_LGUI, _______,  KC_SPC, KC_ENT, _______, KC_RALT
   )
 };
 
-#ifdef ENCODER_MAP_ENABLE
-const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-  [0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RM_VALD, RM_VALU), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
-  [1] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RM_VALD, RM_VALU), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
-  [2] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RM_VALD, RM_VALU), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
-  [3] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(RM_VALD, RM_VALU), ENCODER_CCW_CW(KC_RGHT, KC_LEFT), },
+
+// keymap.c
+
+// define combo names
+enum combos {
+    COMBO_LCTL,
+    COMBO_LGUI,
+    COMBO_LALT,
+    // more here...
+
+    // nifty trick to auto-specify how many combos you have
+    COMBO_LENGTH
 };
-#endif
+
+// nifty trick continued
+uint16_t COMBO_LEN = COMBO_LENGTH;
+
+// define keys that make up combos
+const uint16_t PROGMEM fd_combo[] = {KC_F, KC_D, COMBO_END};
+const uint16_t PROGMEM fs_combo[] = {KC_F, KC_S, COMBO_END};
+const uint16_t PROGMEM fa_combo[] = {KC_F, KC_A, COMBO_END};
+// more here...
+
+// mp combo names to their keys and the key they trigger
+combo_t key_combos[] = {
+    [COMBO_LCTL] = COMBO(fd_combo, OS_LCTL),
+    [COMBO_LGUI] = COMBO(fs_combo, OS_LGUI),
+    [COMBO_LALT] = COMBO(fa_combo, OS_LALT),
+    // more here...
+};
